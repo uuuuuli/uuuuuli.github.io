@@ -49,7 +49,7 @@
 
 <h2 id="查看-cpu-信息"><a href="#查看-cpu-信息" class="headerlink" title="查看 cpu 信息"></a>查看 cpu 信息</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sysctl -n machdep.cpu.brand_string</span><br></pre></td></tr></table></figure>
 
-<h2 id="修改终端里显示-hostname"><a href="#修改终端里显示-hostname" class="headerlink" title="修改终端里显示 hostname"></a>修改终端里显示 hostname</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo hostname -s &lt;HOST_NAME&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="修改终端里显示-hostname"><a href="#修改终端里显示-hostname" class="headerlink" title="修改终端里显示 hostname"></a>修改终端里显示 hostname</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> hostname -s &lt;HOST_NAME&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="修改终端"><a href="#修改终端" class="headerlink" title="修改终端"></a>修改终端</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.dock ResetLaunchPad -bool <span class="literal">true</span></span><br><span class="line">killall Dock</span><br></pre></td></tr></table></figure>
 
@@ -110,29 +110,6 @@
       <tags>
         <tag>Swift</tag>
         <tag>数组</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Swift 的 @convention 是什么</title>
-    <url>/posts/2535024010.html</url>
-    <content><![CDATA[<p><code>@convention</code> 在 Swift2.0 中引入，用于修饰函数类型，它指出了函数调用的约定。</p>
-<ul>
-<li><code>@convention(swift)</code><br> 表明是 swift 的闭包</li>
-<li><code>@convention(block)</code><br> 匹配 Objective-C 方法参数中的 block 参数</li>
-<li><code>@convention(c)</code><br> 匹配 C 函数参数中的函数指针</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="convention-c"><a href="#convention-c" class="headerlink" title="@convention(c)"></a>@convention(c)</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Objc</span></span><br><span class="line"><span class="comment">/// 定义了一个C函数，callback是一个函数指针</span></span><br><span class="line"><span class="built_in">CGFloat</span> myCFunction(<span class="built_in">CGFloat</span> (callback)(<span class="built_in">CGFloat</span> x, <span class="built_in">CGFloat</span> y)) &#123;</span><br><span class="line">    <span class="keyword">return</span> callback(<span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Swift</span></span><br><span class="line"><span class="comment">/// 第一种调用 myCFunction</span></span><br><span class="line"><span class="keyword">let</span> callback: <span class="keyword">@convention(c)</span> (<span class="type">CGFloat</span>, <span class="type">CGFloat</span>) -&gt; <span class="type">CGFloat</span> <span class="operator">=</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$0</span> <span class="operator">+</span> <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> value <span class="operator">=</span> myCFunction(callback)</span><br><span class="line"><span class="built_in">print</span>(value)</span><br><span class="line"><span class="comment">/// 直接实现</span></span><br><span class="line"><span class="keyword">let</span> value1 <span class="operator">=</span> myCFunction &#123; <span class="variable">$0</span> <span class="operator">+</span> <span class="variable">$1</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(value)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Swift</category>
-      </categories>
-      <tags>
-        <tag>Swift</tag>
-        <tag>@convention</tag>
       </tags>
   </entry>
   <entry>
@@ -245,6 +222,29 @@
       <tags>
         <tag>Swift</tag>
         <tag>运算符</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Swift 的 @convention 是什么</title>
+    <url>/posts/2535024010.html</url>
+    <content><![CDATA[<p><code>@convention</code> 在 Swift2.0 中引入，用于修饰函数类型，它指出了函数调用的约定。</p>
+<ul>
+<li><code>@convention(swift)</code><br> 表明是 swift 的闭包</li>
+<li><code>@convention(block)</code><br> 匹配 Objective-C 方法参数中的 block 参数</li>
+<li><code>@convention(c)</code><br> 匹配 C 函数参数中的函数指针</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="convention-c"><a href="#convention-c" class="headerlink" title="@convention(c)"></a>@convention(c)</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Objc</span></span><br><span class="line"><span class="comment">/// 定义了一个C函数，callback是一个函数指针</span></span><br><span class="line"><span class="built_in">CGFloat</span> myCFunction(<span class="built_in">CGFloat</span> (callback)(<span class="built_in">CGFloat</span> x, <span class="built_in">CGFloat</span> y)) &#123;</span><br><span class="line">    <span class="keyword">return</span> callback(<span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Swift</span></span><br><span class="line"><span class="comment">/// 第一种调用 myCFunction</span></span><br><span class="line"><span class="keyword">let</span> callback: <span class="keyword">@convention(c)</span> (<span class="type">CGFloat</span>, <span class="type">CGFloat</span>) -&gt; <span class="type">CGFloat</span> <span class="operator">=</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$0</span> <span class="operator">+</span> <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> value <span class="operator">=</span> myCFunction(callback)</span><br><span class="line"><span class="built_in">print</span>(value)</span><br><span class="line"><span class="comment">/// 直接实现</span></span><br><span class="line"><span class="keyword">let</span> value1 <span class="operator">=</span> myCFunction &#123; <span class="variable">$0</span> <span class="operator">+</span> <span class="variable">$1</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(value)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Swift</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+        <tag>@convention</tag>
       </tags>
   </entry>
   <entry>
@@ -398,35 +398,35 @@
 <h2 id="文件共享支持"><a href="#文件共享支持" class="headerlink" title="文件共享支持"></a>文件共享支持</h2><p>1.在应用程序的<code>Info.plist</code>文件中，添加<code>UIFileSharingEnabled</code>键，并将键的值设置为<code>YES</code>。</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>UIFileSharingEnabled<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="./images/FileSharing.png" alt="FileSharing.png"></p>
+<p><img src="/./images/FileSharing.png" alt="FileSharing.png"></p>
 <p>2.将需要共享的文件放在应用程序的<code>Documents</code>目录中。</p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> data <span class="operator">=</span> <span class="string">&quot;Hello world!&quot;</span>.data(using: .utf8)</span><br><span class="line"><span class="keyword">let</span> filePath <span class="operator">=</span> (<span class="type">NSHomeDirectory</span>() <span class="keyword">as</span> <span class="type">NSString</span>).appendingPathComponent(<span class="string">&quot;Documents/SharingData.bin&quot;</span>)</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> data<span class="operator">?</span>.write(to: <span class="type">URL</span>(fileURLWithPath: filePath))</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>3.连接设备，然后在 iTunes 中的<code>File Sharing</code>中查看分享的文件。</p>
-<p><img src="./images/iTunesFileSharing.png" alt="iTunesFileSharing.png"></p>
+<p><img src="/./images/iTunesFileSharing.png" alt="iTunesFileSharing.png"></p>
 <h2 id="接入-Files-应用程序"><a href="#接入-Files-应用程序" class="headerlink" title="接入 Files 应用程序"></a>接入 Files 应用程序</h2><p>支持 iOS11 及更高的版本</p>
 <p>1.在应用程序的<code>Info.plist</code>文件中，添加<code>LSSupportsOpeningDocumentsInPlace</code>键，并将键的值设置为<code>YES</code>。</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>LSSupportsOpeningDocumentsInPlace<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="./images/FileSharingInFiles.png" alt="FileSharingInFiles.png"></p>
+<p><img src="/./images/FileSharingInFiles.png" alt="FileSharingInFiles.png"></p>
 <p>2.在手机的<strong>文件</strong>应用程序中，查看分享的文件。</p>
-<p><img src="./images/iPhoneFiles.png" alt="iPhoneFiles.png"></p>
+<p><img src="/./images/iPhoneFiles.png" alt="iPhoneFiles.png"></p>
 ]]></content>
       <categories>
         <category>iOS</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>文件共享</tag>
+        <tag>iOS</tag>
       </tags>
   </entry>
   <entry>
     <title>npm ls 命令的基本使用</title>
     <url>/posts/430364258.html</url>
-    <content><![CDATA[<p><code>npm ls</code> / <code>npm list</code> / <code>npm la</code> / <code>npm ll</code> 命令会将所安装包的所有版本及其依赖项以树状结构打印到控制台中。<code>npm la</code> 和 <code>npm ll</code> 默认会显示额外的一些信息。</p>
+    <content><![CDATA[<p><code>npm ls</code> &#x2F; <code>npm list</code> &#x2F; <code>npm la</code> &#x2F; <code>npm ll</code> 命令会将所安装包的所有版本及其依赖项以树状结构打印到控制台中。<code>npm la</code> 和 <code>npm ll</code> 默认会显示额外的一些信息。</p>
 <span id="more"></span>
 
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">npm <span class="built_in">ls</span> / npm list / npm la / npm ll</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">以 JSON 显示信息，默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -json # 等价于 npm ls -json true</span><br><span class="line">npm ls -json false</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">显示额外的信息，默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -long</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">显示可解析的输出，而不是树视图。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -parseable</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">列出全局安装的包而不是当前项目的。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -global</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">当前展示依赖树的最大深度</span></span><br><span class="line">npm ls -depth=0</span><br><span class="line">npm ls -depth=1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">仅显示在 dependencies 下的包的依赖树。 默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -prod</span><br><span class="line">npm ls -production</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">仅显示在 devDependencies 下的包的依赖树。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -dev</span><br><span class="line">npm ls -development</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">only</span></span><br><span class="line">npm ls -only dev/development # 等价于 npm ls -dev</span><br><span class="line">npm ls -only prod/production # 等价于 npm ls -production</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">仅显示 linked 的依赖。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -link</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">是否使用 unicode 字符表示树结构。设置为 <span class="literal">false</span> 以便使用全 ansi 输出。默认为 <span class="literal">true</span></span></span><br><span class="line">npm ls -unicode</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">npm <span class="built_in">ls</span> / npm list / npm la / npm ll</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">以 JSON 显示信息，默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -json # 等价于 npm ls -json true</span><br><span class="line">npm ls -json false</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示额外的信息，默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -long</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示可解析的输出，而不是树视图。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -parseable</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">列出全局安装的包而不是当前项目的。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -global</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当前展示依赖树的最大深度</span></span><br><span class="line">npm ls -depth=0</span><br><span class="line">npm ls -depth=1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅显示在 dependencies 下的包的依赖树。 默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -prod</span><br><span class="line">npm ls -production</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅显示在 devDependencies 下的包的依赖树。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -dev</span><br><span class="line">npm ls -development</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">only</span></span><br><span class="line">npm ls -only dev/development # 等价于 npm ls -dev</span><br><span class="line">npm ls -only prod/production # 等价于 npm ls -production</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅显示 linked 的依赖。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -link</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">是否使用 unicode 字符表示树结构。设置为 <span class="literal">false</span> 以便使用全 ansi 输出。默认为 <span class="literal">true</span></span></span><br><span class="line">npm ls -unicode</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.npmjs.com/cli/v6/commands/npm">https://docs.npmjs.com/cli/v6/commands/npm</a></p>
 ]]></content>
@@ -599,7 +599,7 @@
     <title>解决 Vue 默认路由有斜杠后缀的问题?</title>
     <url>/posts/1323113353.html</url>
     <content><![CDATA[<p>测试版本:<br><code>vue: 2.6.12</code><br><code>vue-router: 3.4.7</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span></span><br><span class="line">    <span class="attr">component</span>: <span class="title class_">Layout</span>,</span><br><span class="line">    <span class="attr">children</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;homeindex&#x27;</span></span><br><span class="line">        <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="title function_">import</span>(<span class="string">&#x27;@/views/home/index.vue&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span></span><br><span class="line">    <span class="attr">component</span>: <span class="title class_">Layout</span>,</span><br><span class="line">    <span class="attr">children</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;homeindex&#x27;</span></span><br><span class="line">        <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/home/index.vue&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <span id="more"></span>
 
