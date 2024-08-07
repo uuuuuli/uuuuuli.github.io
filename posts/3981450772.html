@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Swift 如何自定义运算符？ | uuuuuli</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Swift 中许多有的运算符，可以方便做一些运算操作。 例如:  溢出运算符 &amp;+&#x3D; &amp;-&#x3D; … 范围运算符 ..&lt; ... 空合运算符 ?? 等等  那么，这些运算符的如何进行定义、优先级大小和结合性如何设置等等，让我们一起来了解一下吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 如何自定义运算符？">
+<meta property="og:url" content="https://uuuuuli.top/posts/3981450772.html">
+<meta property="og:site_name" content="uuuuuli">
+<meta property="og:description" content="Swift 中许多有的运算符，可以方便做一些运算操作。 例如:  溢出运算符 &amp;+&#x3D; &amp;-&#x3D; … 范围运算符 ..&lt; ... 空合运算符 ?? 等等  那么，这些运算符的如何进行定义、优先级大小和结合性如何设置等等，让我们一起来了解一下吧！">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-06T10:25:32.111Z">
+<meta property="article:author" content="uuuuuli">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="运算符">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="uuuuuli" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">uuuuuli</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Learning, Life, Growth, Feelings...</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/categories/">Categories</a>
+        
+          <a class="main-nav-link" href="/tags/">Tags</a>
+        
+          <a class="main-nav-link" href="/essay/">Essay</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          
+            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/uuuuuli"><span class="fa fa-GitHub"></span></a>
+          
+            <a class="nav-icon" href="mailto:hfyl1992@gmail.com"><span class="fa fa-E-Mail"></span></a>
+          
+            <a class="nav-icon" target="_blank" rel="noopener" href="https://weibo.com/u/1231612521"><span class="fa fa-Weibo"></span></a>
+          
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://uuuuuli.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Swift如何自定义运算符" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/posts/3981450772.html" class="article-date">
+  <time class="dt-published" datetime="2022-03-13T16:00:00.000Z" itemprop="datePublished">2022-03-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Swift/">Swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Swift 如何自定义运算符？
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Swift 中许多有的运算符，可以方便做一些运算操作。 例如:</p>
+<ul>
+<li>溢出运算符 <code>&amp;+=</code> <code>&amp;-=</code> …</li>
+<li>范围运算符 <code>..&lt;</code> <code>...</code></li>
+<li>空合运算符 <code>??</code> 等等</li>
+</ul>
+<p>那么，这些运算符的如何进行定义、优先级大小和结合性如何设置等等，让我们一起来了解一下吧！</p>
+<span id="more"></span>
+
+<h2 id="如何定义运算符？"><a href="#如何定义运算符？" class="headerlink" title="如何定义运算符？"></a>如何定义运算符？</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 前缀</span></span><br><span class="line"><span class="keyword">prefix</span> <span class="keyword">operator</span> <span class="title">++</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 中缀</span></span><br><span class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> <span class="title">**</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 后缀</span></span><br><span class="line"><span class="keyword">postfix</span> <span class="keyword">operator</span> <span class="title">--</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h2><h3 id="优先级组"><a href="#优先级组" class="headerlink" title="优先级组"></a>优先级组</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//===----------------------------------------------------------------------===//</span></span><br><span class="line"><span class="comment">// Standard precedence groups</span></span><br><span class="line"><span class="comment">//===----------------------------------------------------------------------===//</span></span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">AssignmentPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">assignment</span>: <span class="keyword">true</span></span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">FunctionArrowPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">AssignmentPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">TernaryPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">FunctionArrowPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">DefaultPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">TernaryPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">LogicalDisjunctionPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">TernaryPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">LogicalConjunctionPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">LogicalDisjunctionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">ComparisonPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">LogicalConjunctionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">NilCoalescingPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">ComparisonPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">CastingPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">NilCoalescingPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">RangeFormationPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">CastingPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">AdditionPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">RangeFormationPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">MultiplicationPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">AdditionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">BitwiseShiftPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">MultiplicationPrecedence</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上是 swift <a target="_blank" rel="noopener" href="https://github.com/apple/swift/blob/master/stdlib/public/core/Policy.swift">源码</a>中关于标准优先级组的定义。当然，我们也可以查看<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/swift/swift_standard_library/operator_declarations">官方的文档</a>了解运算符的优先级组。下表展示了优先级由低到高的排列</p>
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><table>
+<thead>
+<tr>
+<th align="left">优先级(由低到高)</th>
+<th align="left">结合性</th>
+<th align="left">运算符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>AssignmentPrecedence</code></td>
+<td align="left">right</td>
+<td align="left"><code>*=</code> <code>&amp;*=</code> <code>/=</code> <code>%=</code> <code>+=</code> <code>&amp;+=</code> <code>-=</code> <code>&amp;-=</code> <code>&lt;&lt;=</code> <code>&amp;&lt;&lt;=</code> <code>&gt;&gt;=</code> <code>&amp;&gt;&gt;=</code> <code>&amp;=</code> <code>^=</code> <code>|=</code></td>
+</tr>
+<tr>
+<td align="left"><code>FunctionArrowPrecedence</code></td>
+<td align="left">right</td>
+<td align="left"><code>~&gt;</code></td>
+</tr>
+<tr>
+<td align="left"><code>TernaryPrecedence</code></td>
+<td align="left">right</td>
+<td align="left"><code>?:</code></td>
+</tr>
+<tr>
+<td align="left"><code>DefaultPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>LogicalDisjunctionPrecedence</code></td>
+<td align="left">left</td>
+<td align="left"><code>||</code></td>
+</tr>
+<tr>
+<td align="left"><code>LogicalConjunctionPrecedence</code></td>
+<td align="left">left</td>
+<td align="left"><code>&amp;&amp;</code></td>
+</tr>
+<tr>
+<td align="left"><code>ComparisonPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code> <code>==</code> <code>!=</code> <code>===</code> <code>!==</code> <code>~=</code></td>
+</tr>
+<tr>
+<td align="left"><code>NilCoalescingPrecedence</code></td>
+<td align="left">right</td>
+<td align="left"><code>??</code></td>
+</tr>
+<tr>
+<td align="left"><code>CastingPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"><code>is</code> <code>as</code> <code>as!</code> <code>as?</code></td>
+</tr>
+<tr>
+<td align="left"><code>RangeFormationPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"><code>...</code> <code>..&lt;</code></td>
+</tr>
+<tr>
+<td align="left"><code>AdditionPrecedence</code></td>
+<td align="left">left</td>
+<td align="left"><code>+</code> <code>&amp;+</code> <code>-</code> <code>&amp;-</code> <code>|</code> <code>^</code></td>
+</tr>
+<tr>
+<td align="left"><code>MultiplicationPrecedence</code></td>
+<td align="left">left</td>
+<td align="left"><code>*</code> <code>&amp;*</code> <code>/</code> <code>%</code> <code>&amp;</code></td>
+</tr>
+<tr>
+<td align="left"><code>BitwiseShiftPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"><code>&lt;&lt;</code> <code>&amp;&lt;&lt;</code> <code>&gt;&gt;</code> <code>&amp;&gt;&gt;</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li>中缀运算符默认的优先级别为 <code>DefaultPrecedence</code>。</li>
+<li>中缀运算符默认的结合性为 <code>none</code>。</li>
+<li><code>DefaultPrecedence</code> 的优先级高于 <code>TernaryPrecedence</code>。</li>
+</ul>
+<h2 id="如何自定义运算符？"><a href="#如何自定义运算符？" class="headerlink" title="如何自定义运算符？"></a>如何自定义运算符？</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">PowerPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">    <span class="keyword">higherThan</span>: <span class="type">MultiplicationPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> <span class="title">**</span> : <span class="type">PowerPrecedence</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">extension</span> <span class="title class_">Int</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">func</span> <span class="title function_">**</span> (<span class="params">lhs</span>: <span class="type">Int</span>, <span class="params">rhs</span>: <span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>(pow(<span class="type">Double</span>(lhs), <span class="type">Double</span>(rhs)))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>定义优先级组 <code>PowerPrecedence</code>,设置结合性为 <code>left</code>,优先级大于 <code>MultiplicationPrecedence</code></li>
+<li>定义运算符 <code>**</code>,设置优先级别为 <code>PowerPrecedence</code></li>
+<li>扩展 <code>Int</code>，添加<code>**</code>运算。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://uuuuuli.top/posts/3981450772.html" data-id="clzi9zcq7000g5y8a91m61bab" data-title="Swift 如何自定义运算符？" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/posts/1149722179.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          JS首字母大写
+        
+      </div>
+    </a>
+  
+  
+    <a href="/posts/2139296450.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">CSS text-align:justify; 最后一行文本显示问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apple/">Apple</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/MacOS/">MacOS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/">Swift</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/UIKit/">UIKit</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Swift/UIKit/iOS/">iOS</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Swift/">Swift</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/convention/" rel="tag">@convention</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MacOS/" rel="tag">MacOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shell/" rel="tag">Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UIButton/" rel="tag">UIButton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UIKit/" rel="tag">UIKit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VueRouter/" rel="tag">VueRouter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xcode/" rel="tag">Xcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E7%89%87/" rel="tag">图片</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/" rel="tag">小技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD/" rel="tag">懒加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%89%E9%92%AE/" rel="tag">按钮</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/" rel="tag">文件共享</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F/" rel="tag">文本对齐方式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E6%9C%AC%E8%BD%AC%E8%AF%AD%E9%9F%B3/" rel="tag">文本转语音</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B8%E5%86%8C/" rel="tag">相册</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%81%E4%B9%A6/" rel="tag">证书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%83%E8%AF%95/" rel="tag">调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="tag">运算符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%82%93%E7%99%BD%E6%B0%8F%E7%BC%96%E7%A0%81/" rel="tag">邓白氏编码</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/convention/" style="font-size: 10px;">@convention</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 12.5px;">JavaScript</a> <a href="/tags/MacOS/" style="font-size: 12.5px;">MacOS</a> <a href="/tags/Shell/" style="font-size: 12.5px;">Shell</a> <a href="/tags/Swift/" style="font-size: 20px;">Swift</a> <a href="/tags/UIButton/" style="font-size: 10px;">UIButton</a> <a href="/tags/UIKit/" style="font-size: 10px;">UIKit</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/VueRouter/" style="font-size: 10px;">VueRouter</a> <a href="/tags/Xcode/" style="font-size: 10px;">Xcode</a> <a href="/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 10px;">图片</a> <a href="/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/" style="font-size: 17.5px;">小技巧</a> <a href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD/" style="font-size: 10px;">懒加载</a> <a href="/tags/%E6%8C%89%E9%92%AE/" style="font-size: 10px;">按钮</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/" style="font-size: 10px;">文件共享</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F/" style="font-size: 10px;">文本对齐方式</a> <a href="/tags/%E6%96%87%E6%9C%AC%E8%BD%AC%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">文本转语音</a> <a href="/tags/%E7%9B%B8%E5%86%8C/" style="font-size: 10px;">相册</a> <a href="/tags/%E8%AF%81%E4%B9%A6/" style="font-size: 10px;">证书</a> <a href="/tags/%E8%B0%83%E8%AF%95/" style="font-size: 10px;">调试</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 12.5px;">运算符</a> <a href="/tags/%E9%82%93%E7%99%BD%E6%B0%8F%E7%BC%96%E7%A0%81/" style="font-size: 10px;">邓白氏编码</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/posts/637029710.html">JavaScript 文件大小格式化</a>
+          </li>
+        
+          <li>
+            <a href="/posts/1149722179.html">JS首字母大写</a>
+          </li>
+        
+          <li>
+            <a href="/posts/3981450772.html">Swift 如何自定义运算符？</a>
+          </li>
+        
+          <li>
+            <a href="/posts/2139296450.html">CSS text-align:justify; 最后一行文本显示问题</a>
+          </li>
+        
+          <li>
+            <a href="/posts/430364258.html">npm ls 命令的基本使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 uuuuuli<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories/" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags/" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essay/" class="mobile-nav-link">Essay</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
