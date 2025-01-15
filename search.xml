@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>npm ls 命令的基本使用</title>
+    <url>/2022/03/14/basic-usage-of-npm-ls-command.html</url>
+    <content><![CDATA[<p><code>npm ls</code> &#x2F; <code>npm list</code> &#x2F; <code>npm la</code> &#x2F; <code>npm ll</code> 命令会将所安装包的所有版本及其依赖项以树状结构打印到控制台中。<code>npm la</code> 和 <code>npm ll</code> 默认会显示额外的一些信息。</p>
+<span id="more"></span>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">npm <span class="built_in">ls</span> / npm list / npm la / npm ll</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">以 JSON 显示信息，默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -json # 等价于 npm ls -json true</span><br><span class="line">npm ls -json false</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示额外的信息，默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -long</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示可解析的输出，而不是树视图。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -parseable</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">列出全局安装的包而不是当前项目的。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -global</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当前展示依赖树的最大深度</span></span><br><span class="line">npm ls -depth=0</span><br><span class="line">npm ls -depth=1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅显示在 dependencies 下的包的依赖树。 默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -prod</span><br><span class="line">npm ls -production</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅显示在 devDependencies 下的包的依赖树。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -dev</span><br><span class="line">npm ls -development</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">only</span></span><br><span class="line">npm ls -only dev/development # 等价于 npm ls -dev</span><br><span class="line">npm ls -only prod/production # 等价于 npm ls -production</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅显示 linked 的依赖。默认为 <span class="literal">false</span></span></span><br><span class="line">npm ls -link</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">是否使用 unicode 字符表示树结构。设置为 <span class="literal">false</span> 以便使用全 ansi 输出。默认为 <span class="literal">true</span></span></span><br><span class="line">npm ls -unicode</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.npmjs.com/cli/v6/commands/npm">https://docs.npmjs.com/cli/v6/commands/npm</a></p>
+]]></content>
+      <categories>
+        <category>node</category>
+      </categories>
+      <tags>
+        <tag>npm命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS text-align:justify; 最后一行文本显示问题</title>
+    <url>/2022/03/14/css-text-align-justify-last-line-issue.html</url>
+    <content><![CDATA[<p>CSS 中当设置 <code>text-align: justify;</code> 最后一行文本默认是左对齐，下面方法可以解决最后一行文本的对齐方式问题。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;desc&quot;</span>&gt;</span>燕子去了，有再来的时候；杨柳枯了，有再青的时候。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.desc</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">220px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">text-align</span>: justify;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.desc</span><span class="selector-pseudo">::after</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Development</category>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>文本对齐</tag>
+        <tag>Tips</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Swift 如何自定义运算符？</title>
+    <url>/2022/03/14/custom-operators-in-swift.html</url>
+    <content><![CDATA[<p>Swift 中许多有的运算符，可以方便做一些运算操作。 例如:</p>
+<ul>
+<li>溢出运算符 <code>&amp;+=</code> <code>&amp;-=</code> …</li>
+<li>范围运算符 <code>..&lt;</code> <code>...</code></li>
+<li>空合运算符 <code>??</code> 等等</li>
+</ul>
+<p>那么，这些运算符的如何进行定义、优先级大小和结合性如何设置等等，让我们一起来了解一下吧！</p>
+<span id="more"></span>
+
+<h2 id="如何定义运算符？"><a href="#如何定义运算符？" class="headerlink" title="如何定义运算符？"></a>如何定义运算符？</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// 前缀</span></span><br><span class="line"><span class="keyword">prefix</span> <span class="keyword">operator</span> <span class="title">++</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 中缀</span></span><br><span class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> <span class="title">**</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/// 后缀</span></span><br><span class="line"><span class="keyword">postfix</span> <span class="keyword">operator</span> <span class="title">--</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h2><h3 id="优先级组"><a href="#优先级组" class="headerlink" title="优先级组"></a>优先级组</h3><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//===----------------------------------------------------------------------===//</span></span><br><span class="line"><span class="comment">// Standard precedence groups</span></span><br><span class="line"><span class="comment">//===----------------------------------------------------------------------===//</span></span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">AssignmentPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">assignment</span>: <span class="keyword">true</span></span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">FunctionArrowPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">AssignmentPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">TernaryPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">FunctionArrowPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">DefaultPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">TernaryPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">LogicalDisjunctionPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">TernaryPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">LogicalConjunctionPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">LogicalDisjunctionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">ComparisonPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">LogicalConjunctionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">NilCoalescingPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">ComparisonPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">CastingPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">NilCoalescingPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">RangeFormationPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">CastingPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">AdditionPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">RangeFormationPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">MultiplicationPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">AdditionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">BitwiseShiftPrecedence</span> &#123;</span><br><span class="line">  <span class="keyword">higherThan</span>: <span class="type">MultiplicationPrecedence</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上是 swift <a href="https://github.com/apple/swift/blob/master/stdlib/public/core/Policy.swift">源码</a>中关于标准优先级组的定义。当然，我们也可以查看<a href="https://developer.apple.com/documentation/swift/swift_standard_library/operator_declarations">官方的文档</a>了解运算符的优先级组。下表展示了优先级由低到高的排列</p>
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><table>
+<thead>
+<tr>
+<th align="left">优先级(由低到高)</th>
+<th align="left">结合性</th>
+<th align="left">运算符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>AssignmentPrecedence</code></td>
+<td align="left">right</td>
+<td align="left"><code>*=</code> <code>&amp;*=</code> <code>/=</code> <code>%=</code> <code>+=</code> <code>&amp;+=</code> <code>-=</code> <code>&amp;-=</code> <code>&lt;&lt;=</code> <code>&amp;&lt;&lt;=</code> <code>&gt;&gt;=</code> <code>&amp;&gt;&gt;=</code> <code>&amp;=</code> <code>^=</code> <code>|=</code></td>
+</tr>
+<tr>
+<td align="left"><code>FunctionArrowPrecedence</code></td>
+<td align="left">right</td>
+<td align="left"><code>~&gt;</code></td>
+</tr>
+<tr>
+<td align="left"><code>TernaryPrecedence</code></td>
+<td align="left">right</td>
+<td align="left"><code>?:</code></td>
+</tr>
+<tr>
+<td align="left"><code>DefaultPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>LogicalDisjunctionPrecedence</code></td>
+<td align="left">left</td>
+<td align="left"><code>||</code></td>
+</tr>
+<tr>
+<td align="left"><code>LogicalConjunctionPrecedence</code></td>
+<td align="left">left</td>
+<td align="left"><code>&amp;&amp;</code></td>
+</tr>
+<tr>
+<td align="left"><code>ComparisonPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code> <code>==</code> <code>!=</code> <code>===</code> <code>!==</code> <code>~=</code></td>
+</tr>
+<tr>
+<td align="left"><code>NilCoalescingPrecedence</code></td>
+<td align="left">right</td>
+<td align="left"><code>??</code></td>
+</tr>
+<tr>
+<td align="left"><code>CastingPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"><code>is</code> <code>as</code> <code>as!</code> <code>as?</code></td>
+</tr>
+<tr>
+<td align="left"><code>RangeFormationPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"><code>...</code> <code>..&lt;</code></td>
+</tr>
+<tr>
+<td align="left"><code>AdditionPrecedence</code></td>
+<td align="left">left</td>
+<td align="left"><code>+</code> <code>&amp;+</code> <code>-</code> <code>&amp;-</code> <code>|</code> <code>^</code></td>
+</tr>
+<tr>
+<td align="left"><code>MultiplicationPrecedence</code></td>
+<td align="left">left</td>
+<td align="left"><code>*</code> <code>&amp;*</code> <code>/</code> <code>%</code> <code>&amp;</code></td>
+</tr>
+<tr>
+<td align="left"><code>BitwiseShiftPrecedence</code></td>
+<td align="left">none</td>
+<td align="left"><code>&lt;&lt;</code> <code>&amp;&lt;&lt;</code> <code>&gt;&gt;</code> <code>&amp;&gt;&gt;</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li>中缀运算符默认的优先级别为 <code>DefaultPrecedence</code>。</li>
+<li>中缀运算符默认的结合性为 <code>none</code>。</li>
+<li><code>DefaultPrecedence</code> 的优先级高于 <code>TernaryPrecedence</code>。</li>
+</ul>
+<h2 id="如何自定义运算符？"><a href="#如何自定义运算符？" class="headerlink" title="如何自定义运算符？"></a>如何自定义运算符？</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">precedencegroup</span> <span class="title">PowerPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">    <span class="keyword">higherThan</span>: <span class="type">MultiplicationPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> <span class="title">**</span> : <span class="type">PowerPrecedence</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">extension</span> <span class="title class_">Int</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">func</span> <span class="title function_">**</span> (<span class="params">lhs</span>: <span class="type">Int</span>, <span class="params">rhs</span>: <span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>(pow(<span class="type">Double</span>(lhs), <span class="type">Double</span>(rhs)))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>定义优先级组 <code>PowerPrecedence</code>,设置结合性为 <code>left</code>,优先级大于 <code>MultiplicationPrecedence</code></li>
+<li>定义运算符 <code>**</code>,设置优先级别为 <code>PowerPrecedence</code></li>
+<li>扩展 <code>Int</code>，添加<code>**</code>运算。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Swift</category>
+      </categories>
+      <tags>
+        <tag>运算符</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在苹果开发者网站申请邓白氏编码</title>
+    <url>/2018/10/23/how-to-apply-for-dun-bradstreet-duns-number.html</url>
+    <content><![CDATA[<p>邓氏编码（D-U-N-S® Number，全称： Data Universal Numbering System)。）是一种实时动态的企业身份标识。它源自于一个独一无二的 9 位数字全球编码系统 DUNS，相当于企业的身份识别码 （就像是个人的身份证），被广泛应用于企业识别、商业信息的组织及整理。可以帮助识别和迅速定位全球 4 亿家企业的信息。</p>
+<span id="more"></span>
+
+<h2 id="申请步骤"><a href="#申请步骤" class="headerlink" title="申请步骤"></a>申请步骤</h2><ol>
+<li>登录<a href="https://developer.apple.com/">https://developer.apple.com/</a></li>
+<li>点击<code>Support</code>，进入 Developer Support</li>
+<li>点击<code>MemberShip</code>，进入 MemberShip 界面</li>
+<li>点击<code>D-U-N-S® Number</code>,申请邓白氏编码</li>
+<li>点击<code>D-U-N-S Number look up tool</code>,然后登录个人的 apple 开发者账号</li>
+<li><code>Organization Information</code>，然后填写公司的一下信息</li>
+<li>提交之后如果直接发来邓白氏编码不用，点击<code>Creat</code></li>
+<li>等待审核，之后邓白氏会发送邮件到联系邮箱中</li>
+<li>按照邓白氏邮件格式要求，填写相应信息，然后发送</li>
+<li>24 小时之内苹果会发过来邓白氏编码，然后登录 apple developer 中会有选择，填写一下邓白氏，然后付款就 ok 了</li>
+</ol>
+]]></content>
+      <categories>
+        <category>apple</category>
+      </categories>
+      <tags>
+        <tag>邓白氏编码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决 Vue 默认路由有斜杠后缀的问题?</title>
+    <url>/2022/03/14/fix-vue-default-route-slash-suffix-issue.html</url>
+    <content><![CDATA[<p>测试版本:<br><code>vue: 2.6.12</code><br><code>vue-router: 3.4.7</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span></span><br><span class="line">    <span class="attr">component</span>: <span class="title class_">Layout</span>,</span><br><span class="line">    <span class="attr">children</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;homeindex&#x27;</span></span><br><span class="line">        <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/home/index.vue&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://stackoverflow.com/questions/58130594/vuerouter-default-child-route-without-trailing-slash#:~:text=VueRouter%20always%20adds%20a%20trailing%20slash%20before%20the,%27%3Aaid%27%2C%20component%3A%20HomeArticle%2C%20name%3A%20%27home.article%27%20%7D%20%5D%20%5D">https://stackoverflow.com/questions/58130594/vuerouter-default-child-route-without-trailing-slash#:~:text=VueRouter%20always%20adds%20a%20trailing%20slash%20before%20the,%27%3Aaid%27%2C%20component%3A%20HomeArticle%2C%20name%3A%20%27home.article%27%20%7D%20%5D%20%5D</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Development</category>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>VueRouter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何解决 unable to build chain to self-signed root for signer &quot;XXX&quot; 问题</title>
+    <url>/2020/10/22/fix-unable-to-build-chain-to-self-signed-root-signer.html</url>
+    <content><![CDATA[<p>Xcode 真机运行时，报错 <strong>unable to build chain to self-signed root for signer “XXX”</strong> 问题</p>
+<span id="more"></span>
+
+<h2 id="1-清理证书"><a href="#1-清理证书" class="headerlink" title="1. 清理证书"></a>1. 清理证书</h2><ol>
+<li>打开<strong>钥匙串-&gt;登录-&gt;证书</strong></li>
+<li>重要的证书可以先备份一下(选择证书到处即可)</li>
+<li>删除该项目下所有的证书</li>
+</ol>
+<h2 id="2-安装证书"><a href="#2-安装证书" class="headerlink" title="2. 安装证书"></a>2. 安装证书</h2><ol>
+<li>双击安装真机证书</li>
+<li>证书安装好后，应该在<strong>登录-&gt;证书</strong>下可以看到</li>
+<li>如果没有找到，则直接拖证书到<strong>登录-&gt;证书</strong>下安装</li>
+<li>证书安装好需要有密钥，否则无效</li>
+<li>确保该项目下所有的证书的<strong>信任</strong>为<strong>系统默认</strong></li>
+</ol>
+<h2 id="3-清理-Xcode"><a href="#3-清理-Xcode" class="headerlink" title="3. 清理 Xcode"></a>3. 清理 Xcode</h2><ol>
+<li>打开 <code>Xcode</code></li>
+<li>清理(Clean) <code>CMD+Shift+K</code></li>
+<li>清理 <code>DerivedData</code> 文件夹中的目录和文件</li>
+</ol>
+<h2 id="4-真机调试"><a href="#4-真机调试" class="headerlink" title="4. 真机调试"></a>4. 真机调试</h2><p>真机调试，会弹出需要钥匙串中的证书的弹窗，输入密钥，并点击<strong>始终允许</strong>即可。</p>
+]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+      <tags>
+        <tag>证书</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS 的 FileSharing</title>
+    <url>/2020/10/22/how-to-sharing-file-in-ios.html</url>
+    <content><![CDATA[<p>File Sharing 可以把 App 沙盒中的文件提供给用户访问(文件 App)。</p>
+<span id="more"></span>
+
+<h2 id="文件共享支持"><a href="#文件共享支持" class="headerlink" title="文件共享支持"></a>文件共享支持</h2><p>1.在应用程序的<code>Info.plist</code>文件中，添加<code>UIFileSharingEnabled</code>键，并将键的值设置为<code>YES</code>。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>UIFileSharingEnabled<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/file-sharing.png" alt="FileSharing.png"></p>
+<p>2.将需要共享的文件放在应用程序的<code>Documents</code>目录中。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> data <span class="operator">=</span> <span class="string">&quot;Hello world!&quot;</span>.data(using: .utf8)</span><br><span class="line"><span class="keyword">let</span> filePath <span class="operator">=</span> (<span class="type">NSHomeDirectory</span>() <span class="keyword">as</span> <span class="type">NSString</span>).appendingPathComponent(<span class="string">&quot;Documents/SharingData.bin&quot;</span>)</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> data<span class="operator">?</span>.write(to: <span class="type">URL</span>(fileURLWithPath: filePath))</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.连接设备，然后在 iTunes 中的<code>File Sharing</code>中查看分享的文件。</p>
+<p><img src="/images/file-sharing-in-itunes.png" alt="iTunesFileSharing.png"></p>
+<h2 id="接入-Files-应用程序"><a href="#接入-Files-应用程序" class="headerlink" title="接入 Files 应用程序"></a>接入 Files 应用程序</h2><p>支持 iOS11 及更高的版本</p>
+<p>1.在应用程序的<code>Info.plist</code>文件中，添加<code>LSSupportsOpeningDocumentsInPlace</code>键，并将键的值设置为<code>YES</code>。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>LSSupportsOpeningDocumentsInPlace<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/file-sharing-in-files.png" alt="FileSharingInFiles.png"></p>
+<p>2.在手机的<strong>文件</strong>应用程序中，查看分享的文件。</p>
+<p><img src="/images/iphone-files-app.png" alt="iPhoneFiles.png"></p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>文件共享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript中0.1 + 0.2的问题</title>
+    <url>/2025/01/15/javascript-0.1-plus-0.2-issue.html</url>
+    <content><![CDATA[<p>在 JavaScript 中，<code>0.1 + 0.2</code>的计算结果并不是我们预期的<code>0.3</code>，而是<code>0.30000000000000004</code>。这个问题源于浮点数的表示方式以及计算机内部如何处理数字。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在大多数编程语言中，浮点数是用二进制格式表示的。在 JavaScript 中，所有数字（包括整数和浮点数）都是使用 <a href="https://zh.wikipedia.org/zh-cn/IEEE_754">IEEE 754 标准</a>的双精度浮点数表示的。这意味着某些十进制数不能精确地用二进制数表示。</p>
+<p>例如：</p>
+<ul>
+<li><code>0.1</code>在二进制中是一个无限循环小数，无法精确表示。</li>
+<li><code>0.2</code>同样如此。</li>
+</ul>
+<p>因此，当我们尝试将它们相加时，计算机实际上是在处理近似值，而不是精确值。</p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>下面是一个简单的示例，展示了这个问题：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0.1</span> + <span class="number">0.2</span>); <span class="comment">// 输出: 0.30000000000000004</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>为了避免这个问题，可以使用以下几种方法：</p>
+<h3 id="1-使用整数代替浮点数"><a href="#1-使用整数代替浮点数" class="headerlink" title="1. 使用整数代替浮点数"></a>1. 使用整数代替浮点数</h3><p>将所有数字转换为整数进行计算，然后再转换回浮点数。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sum = (<span class="number">0.1</span> * <span class="number">10</span> + <span class="number">0.2</span> * <span class="number">10</span>) / <span class="number">10</span>; <span class="comment">// 输出: 0.3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用自定义函数进行精确比较"><a href="#2-使用自定义函数进行精确比较" class="headerlink" title="2. 使用自定义函数进行精确比较"></a>2. 使用自定义函数进行精确比较</h3><p>可以编写一个函数来比较两个浮点数是否相等，允许一定的误差：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isEqual</span>(<span class="params">a, b, epsilon = <span class="number">0.00001</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">abs</span>(a - b) &lt; epsilon;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">isEqual</span>(<span class="number">0.1</span> + <span class="number">0.2</span>, <span class="number">0.3</span>)); <span class="comment">// 输出: true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用库"><a href="#3-使用库" class="headerlink" title="3. 使用库"></a>3. 使用库</h3><p>可以使用 <code>decimal.js</code> 、 <code>big.js</code> 和 <code>bignumber.js</code> 这些库来处理精确的十进制计算。</p>
+<h4 id="使用-decimal-js"><a href="#使用-decimal-js" class="headerlink" title="使用 decimal.js"></a>使用 <code>decimal.js</code></h4><p>首先，安装 <code>decimal.js</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install decimal.js</span><br></pre></td></tr></table></figure>
+
+<p>然后在代码中使用 ES6 导入：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Decimal</span> <span class="keyword">from</span> <span class="string">&quot;decimal.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sum = <span class="keyword">new</span> <span class="title class_">Decimal</span>(<span class="number">0.1</span>).<span class="title function_">plus</span>(<span class="keyword">new</span> <span class="title class_">Decimal</span>(<span class="number">0.2</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sum.<span class="title function_">toNumber</span>()); <span class="comment">// 输出: 0.3</span></span><br></pre></td></tr></table></figure>
+
+<p>更多信息请访问 <a href="https://github.com/MikeMcl/decimal.js">decimal.js GitHub</a>。</p>
+<h4 id="使用-big-js"><a href="#使用-big-js" class="headerlink" title="使用 big.js"></a>使用 <code>big.js</code></h4><p>同样，首先安装 <code>big.js</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install big.js</span><br></pre></td></tr></table></figure>
+
+<p>然后在代码中使用 ES6 导入：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Big</span> <span class="keyword">from</span> <span class="string">&quot;big.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sum = <span class="keyword">new</span> <span class="title class_">Big</span>(<span class="number">0.1</span>).<span class="title function_">plus</span>(<span class="keyword">new</span> <span class="title class_">Big</span>(<span class="number">0.2</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sum.<span class="title function_">toString</span>()); <span class="comment">// 输出: &quot;0.3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>更多信息请访问 <a href="https://github.com/MikeMcl/big.js">big.js GitHub</a>。</p>
+<h4 id="使用-bignumber-js"><a href="#使用-bignumber-js" class="headerlink" title="使用 bignumber.js"></a>使用 <code>bignumber.js</code></h4><p>同样，首先安装 <code>bignumber.js</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install bignumber.js</span><br></pre></td></tr></table></figure>
+
+<p>然后在代码中使用 ES6 导入：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">BigNumber</span> <span class="keyword">from</span> <span class="string">&quot;bignumber.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sum = <span class="keyword">new</span> <span class="title class_">BigNumber</span>(<span class="number">0.1</span>).<span class="title function_">plus</span>(<span class="keyword">new</span> <span class="title class_">BigNumber</span>(<span class="number">0.2</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sum.<span class="title function_">toNumber</span>()); <span class="comment">// 输出: &quot;0.3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>更多信息请访问 <a href="https://github.com/MikeMcl/bignumber.js">bignumber.js GitHub</a>。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>编程</tag>
+        <tag>数字精度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS 中如何保存图片到相册</title>
+    <url>/2025/01/15/ios-save-image-to-album.html</url>
+    <content><![CDATA[<p>在 iOS 开发中，保存图片到相册是一个常见的需求。无论你是在开发社交应用，还是在处理图片编辑器，了解如何将图片保存到用户的相册都是非常重要的。本文将为你详细介绍如何在 iOS 中使用 Swift 来实现这一功能。</p>
+<h2 id="1-引入必要的框架"><a href="#1-引入必要的框架" class="headerlink" title="1. 引入必要的框架"></a>1. 引入必要的框架</h2><p>要保存图片到相册，我们需要使用 <code>Photos</code> 框架。首先，确保在你的 Xcode 项目中引入了这个框架。在 <code>Info.plist</code> 文件中添加以下键以请求用户的权限：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>NSPhotoLibraryUsageDescription<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">string</span>&gt;</span>我们需要访问你的照片库，以便保存图片。<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>NSPhotoLibraryAddUsageDescription<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">string</span>&gt;</span>我们需要访问你的照片库，以便保存图片。<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-请求权限"><a href="#2-请求权限" class="headerlink" title="2. 请求权限"></a>2. 请求权限</h2><p>在进行任何图片保存操作之前，我们需要请求用户的权限。只有在获得授权后，才能执行保存操作：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Photos</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> <span class="title function_">requestPhotoLibraryPermission</span>(<span class="params">completion</span>: <span class="keyword">@escaping</span> (<span class="type">Bool</span>) -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="type">PHPhotoLibrary</span>.requestAuthorization &#123; status <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">switch</span> status &#123;</span><br><span class="line">        <span class="keyword">case</span> .authorized:</span><br><span class="line">            completion(<span class="literal">true</span>)</span><br><span class="line">        <span class="keyword">case</span> .denied, .restricted:</span><br><span class="line">            completion(<span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">case</span> .notDetermined:</span><br><span class="line">            completion(<span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">case</span> .limited:</span><br><span class="line">            completion(<span class="literal">true</span>)</span><br><span class="line">        <span class="keyword">@unknown</span> <span class="keyword">default</span>:</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">&quot;未知授权状态&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-保存图片到相册"><a href="#3-保存图片到相册" class="headerlink" title="3. 保存图片到相册"></a>3. 保存图片到相册</h2><p>获得权限后，我们可以使用不同的方法来保存图片。以下是几种常见的方法：</p>
+<h3 id="3-1-使用-UIImageWriteToSavedPhotosAlbum"><a href="#3-1-使用-UIImageWriteToSavedPhotosAlbum" class="headerlink" title="3.1 使用 UIImageWriteToSavedPhotosAlbum"></a>3.1 使用 UIImageWriteToSavedPhotosAlbum</h3><p>这是最简单直接的方法，适用于不需要更多控制的情况：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">saveImageUsingUIImageWriteToSavedPhotosAlbum</span>(<span class="params">image</span>: <span class="type">UIImage</span>) &#123;</span><br><span class="line">    <span class="type">UIImageWriteToSavedPhotosAlbum</span>(image, <span class="keyword">self</span>, <span class="keyword">#selector</span>(image(<span class="keyword">_</span>:didFinishSavingWithError:contextInfo:)), <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@objc</span> <span class="keyword">func</span> <span class="title function_">image</span>(<span class="keyword">_</span> <span class="params">image</span>: <span class="type">UIImage</span>, <span class="params">didFinishSavingWithError</span> <span class="params">error</span>: <span class="type">Error</span>?, <span class="params">contextInfo</span>: <span class="type">UnsafeRawPointer</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> error <span class="operator">=</span> error &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;保存图片失败: <span class="subst">\(error.localizedDescription)</span>&quot;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;图片保存成功&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更多信息请访问 <a href="https://developer.apple.com/documentation/uikit/uiimagewritetosavedphotosalbum">Apple Developer Documentation</a></p>
+<h3 id="3-2-使用-PHPhotoLibrary"><a href="#3-2-使用-PHPhotoLibrary" class="headerlink" title="3.2 使用 PHPhotoLibrary"></a>3.2 使用 PHPhotoLibrary</h3><p>这是更灵活的方法，适合需要更复杂操作的情况：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">saveImageUsingPHPhotoLibrary</span>(<span class="params">image</span>: <span class="type">UIImage</span>) &#123;</span><br><span class="line">      <span class="type">PHPhotoLibrary</span>.shared().performChanges(&#123;</span><br><span class="line">          <span class="type">PHAssetChangeRequest</span>.creationRequestForAsset(from: image)</span><br><span class="line">      &#125;) &#123; success, error <span class="keyword">in</span></span><br><span class="line">          <span class="keyword">if</span> success &#123;</span><br><span class="line">              <span class="built_in">print</span>(<span class="string">&quot;图片保存成功&quot;</span>)</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">let</span> error <span class="operator">=</span> error &#123;</span><br><span class="line">              <span class="built_in">print</span>(<span class="string">&quot;保存图片失败: <span class="subst">\(error.localizedDescription)</span>&quot;</span>)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更多信息请访问 <a href="https://developer.apple.com/documentation/photos/phphotolibrary">Apple Developer Documentation</a></p>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>移动开发</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>开发</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS首字母大写</title>
+    <url>/2022/03/17/javascript-capitalize-first-letter.html</url>
+    <content><![CDATA[<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">capitalize</span>(<span class="params">string</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> string.<span class="title function_">charAt</span>(<span class="number">0</span>).<span class="title function_">toUpperCase</span>() + string.<span class="title function_">slice</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">capitalize</span>(<span class="string">&quot;abc&quot;</span>); <span class="comment">// Abc</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">String</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">capitalized</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">charAt</span>(<span class="number">0</span>).<span class="title function_">toUpperCase</span>() + <span class="variable language_">this</span>.<span class="title function_">slice</span>(<span class="number">1</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="string">&quot;abc&quot;</span>.<span class="title function_">capitalized</span>(); <span class="comment">// Abc</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><strong>首字母大写</strong>: <a href="https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript?page=2&amp;tab=scoredesc#tab-top">https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript?page=2&amp;tab=scoredesc#tab-top</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>首字母大写</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript 文件大小格式化</title>
+    <url>/2022/03/17/javascript-file-size-formatting.html</url>
+    <content><![CDATA[<p>在日常开发中，我们经常需要处理文件大小，并将其以更易读的格式展示给用户。本文将介绍如何使用 JavaScript 来格式化文件大小，并展示了常用的单位。</p>
+<h2 id="文件大小格式化函数"><a href="#文件大小格式化函数" class="headerlink" title="文件大小格式化函数"></a>文件大小格式化函数</h2><p>我们可以使用以下函数将字节数转换为更友好的格式：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">formatFileSize</span>(<span class="params">bytes</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (bytes === <span class="number">0</span>) <span class="keyword">return</span> <span class="string">&quot;0 Bytes&quot;</span>;</span><br><span class="line">  <span class="keyword">const</span> sizes = [<span class="string">&quot;Bytes&quot;</span>, <span class="string">&quot;KB&quot;</span>, <span class="string">&quot;MB&quot;</span>, <span class="string">&quot;GB&quot;</span>, <span class="string">&quot;TB&quot;</span>];</span><br><span class="line">  <span class="keyword">const</span> i = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">log</span>(bytes) / <span class="title class_">Math</span>.<span class="title function_">log</span>(<span class="number">1024</span>));</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseFloat</span>((bytes / <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">1024</span>, i)).<span class="title function_">toFixed</span>(<span class="number">2</span>)) + <span class="string">&quot; &quot;</span> + sizes[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">formatFileSize</span>(<span class="number">1024</span>)); <span class="comment">// 输出: &quot;1 KB&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">formatFileSize</span>(<span class="number">1048576</span>)); <span class="comment">// 输出: &quot;1 MB&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">formatFileSize</span>(<span class="number">1073741824</span>)); <span class="comment">// 输出: &quot;1 GB&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="格式化为指定单位"><a href="#格式化为指定单位" class="headerlink" title="格式化为指定单位"></a>格式化为指定单位</h2><p>如果你希望将文件大小格式化为指定的单位，可以稍作修改：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">formatFileSize</span>(<span class="params">bytes, unit</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> sizes = [<span class="string">&quot;Bytes&quot;</span>, <span class="string">&quot;KB&quot;</span>, <span class="string">&quot;MB&quot;</span>, <span class="string">&quot;GB&quot;</span>, <span class="string">&quot;TB&quot;</span>];</span><br><span class="line">  <span class="keyword">const</span> index = sizes.<span class="title function_">indexOf</span>(unit);</span><br><span class="line">  <span class="keyword">if</span> (index === -<span class="number">1</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Invalid unit&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseFloat</span>((bytes / <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">1024</span>, index)).<span class="title function_">toFixed</span>(<span class="number">2</span>)) + <span class="string">&quot; &quot;</span> + unit;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">formatFileSize</span>(<span class="number">2048</span>, <span class="string">&quot;KB&quot;</span>)); <span class="comment">// 输出: &quot;2 KB&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">formatFileSize</span>(<span class="number">1048576</span>, <span class="string">&quot;MB&quot;</span>)); <span class="comment">// 输出: &quot;1 MB&quot;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>编程技巧</tag>
+        <tag>前端开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Swift 的懒加载</title>
+    <url>/2020/06/22/lazy-loading-in-swift.html</url>
+    <content><![CDATA[<p>Swift 中懒加载相关内容</p>
+<span id="more"></span>
+
+<h2 id="1-lazy"><a href="#1-lazy" class="headerlink" title="1. lazy"></a>1. lazy</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NetworkManager</span> &#123;</span><br><span class="line">    <span class="keyword">lazy</span> <span class="keyword">var</span> urlSession: <span class="type">URLSession</span> <span class="operator">=</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> configuration <span class="operator">=</span> <span class="type">URLSessionConfiguration</span>.default</span><br><span class="line">        <span class="keyword">let</span> urlSession <span class="operator">=</span> <span class="type">URLSession</span>(configuration: configuration)</span><br><span class="line">        <span class="keyword">return</span> urlSession</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>lazy</code> 为 Swift 中的关键字，可以用于类和结构体的存储变量属性，表示该属性只在首次进行访问时初始值才会计算和存储。</p>
+<div style="color:#cc0000;font-size: 16px;font-weight:bold;">需要注意的是:</div><br/>
+
+<blockquote>
+<p>If a property marked with the lazy modifier is accessed by multiple threads simultaneously and the property has not yet been initialized, there is no guarantee that the property will be initialized only once.<br>如果标记有 lazy 修饰符的属性同时被多个线程访问，并且该属性尚未初始化，则不能保证该属性仅被初始化一次。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LazyPropertyClass</span> &#123;</span><br><span class="line">    <span class="keyword">lazy</span> <span class="keyword">var</span> value: <span class="type">Int</span> <span class="operator">=</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>.random(in: <span class="number">0</span><span class="operator">...</span><span class="number">100</span>)</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> instance <span class="operator">=</span> <span class="type">LazyPropertyClass</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span><span class="operator">...</span><span class="number">3</span> &#123;</span><br><span class="line">    <span class="type">DispatchQueue</span>(label: <span class="string">&quot;<span class="subst">\(i)</span>&quot;</span>, attributes: .concurrent).async &#123;</span><br><span class="line">        <span class="built_in">print</span>(instance.value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 47</span></span><br><span class="line"><span class="comment">// 53</span></span><br><span class="line"><span class="comment">// 67</span></span><br><span class="line"><span class="comment">// 67</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-全局属性"><a href="#2-全局属性" class="headerlink" title="2. 全局属性"></a>2. 全局属性</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ViewConstants</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> padding: <span class="type">CGFloat</span> <span class="operator">=</span> <span class="number">12.0</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> toolbarHeight: <span class="type">CGFloat</span> <span class="operator">=</span> <span class="number">56.0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>全局变量</strong>是定义在任何函数、方法、闭包之外或者其他类型上下文的变量。<br><strong>局部变量</strong>是定义在函数、方法之内或者闭包上下文的变量</p>
+<p>在 <a href="https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID263">https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID263</a> 有下面一段话。</p>
+<blockquote>
+<p>Global constants and variables are always computed lazily, in a similar manner to Lazy Stored Properties. Unlike lazy stored properties, global constants and variables do not need to be marked with the lazy modifier.<br>全局常量和变量总是延迟计算，与惰性存储属性类似的方式。与惰性存储的属性不同的是，全局常量和变量不需要使用 lazy 修饰符进行标记。</p>
+<p>Local constants and variables are never computed lazily.<br>局部常量和变量永远不会延迟计算。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> value1: <span class="type">Int</span> <span class="operator">=</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;load value1&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Int</span>.random(in: <span class="number">0</span><span class="operator">...</span><span class="number">100</span>)</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GlobalAndLocalPropertyClass</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> value2: <span class="type">Int</span> <span class="operator">=</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;load value2&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>.random(in: <span class="number">0</span><span class="operator">...</span><span class="number">100</span>)</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> value3: <span class="type">Int</span> <span class="operator">=</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;load value3&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>.random(in: <span class="number">0</span><span class="operator">...</span><span class="number">100</span>)</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">lazy</span> <span class="keyword">var</span> value4: <span class="type">Int</span> <span class="operator">=</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;load value4&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>.random(in: <span class="number">0</span><span class="operator">...</span><span class="number">100</span>)</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> value5: <span class="type">Int</span> <span class="operator">=</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;load value5&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>.random(in: <span class="number">0</span><span class="operator">...</span><span class="number">100</span>)</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> value6: <span class="type">Int</span> <span class="operator">=</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;load value6&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>.random(in: <span class="number">0</span><span class="operator">...</span><span class="number">100</span>)</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化 GlobalAndLocalPropertyClass</span></span><br><span class="line"><span class="comment">// _ = GlobalAndLocalPropertyClass()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行打印:</span></span><br><span class="line"><span class="comment">// load value5</span></span><br><span class="line"><span class="comment">// load value6</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，在 Playground 中执行:</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// load value1</span></span><br><span class="line"><span class="comment">// load value5</span></span><br><span class="line"><span class="comment">// load value6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-LazySequenceProtocol"><a href="#3-LazySequenceProtocol" class="headerlink" title="3. LazySequenceProtocol"></a>3. LazySequenceProtocol</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> doubled <span class="operator">=</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].lazy.map &#123; <span class="variable">$0</span> <span class="operator">*</span> <span class="number">2</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(doubled)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>LazyCollectionProtocol</code> 继承 <code>LazySequenceProtocol</code>协议</li>
+<li><strong>Lazy</strong> 表示延迟执行</li>
+<li><strong>Sequence</strong>: 一种类型，提供对元素的顺序和迭代访问</li>
+<li><strong>Collection</strong>: 一个序列，元素可以无损地遍历多次，并由索引下标访问</li>
+<li>避免不必要的存储分配和计算。</li>
+</ul>
+<h3 id="符合-LazySequenceProtocol-的类型"><a href="#符合-LazySequenceProtocol-的类型" class="headerlink" title="符合 LazySequenceProtocol 的类型"></a>符合 LazySequenceProtocol 的类型</h3><ul>
+<li><strong>LazySequence</strong></li>
+<li><strong>LazyMapSequence</strong></li>
+<li><strong>LazyDropWhileSequence</strong></li>
+<li><strong>LazyFilterSequence</strong></li>
+<li><strong>LazyPrefixWhileSequence</strong></li>
+<li><strong>ReversedCollection</strong></li>
+</ul>
+<p>当且仅当 <code>Base</code> 符合 <code>LazySequenceProtocol</code> 时才符合</p>
+<ul>
+<li><strong>Slice</strong></li>
+</ul>
+<p>当且仅当 <code>Base</code> 符合 <code>LazySequenceProtocol</code> 时才符合</p>
+<ul>
+<li><strong>LazyCollection</strong></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">LazyCollection</span>&lt;<span class="type">T</span>&gt; <span class="operator">=</span> <span class="type">LazySequence</span>&lt;<span class="type">T</span>&gt; <span class="keyword">where</span> <span class="type">T</span> : <span class="type">Collection</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>LazyMapCollection</strong></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">LazyMapCollection</span>&lt;<span class="type">T</span>, <span class="type">U</span>&gt; <span class="operator">=</span> <span class="type">LazyMapSequence</span>&lt;<span class="type">T</span>, <span class="type">U</span>&gt; <span class="keyword">where</span> <span class="type">T</span> : <span class="type">Collection</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>LazyDropWhileCollection</strong></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">LazyDropWhileCollection</span>&lt;<span class="type">T</span>&gt; <span class="operator">=</span> <span class="type">LazyDropWhileSequence</span>&lt;<span class="type">T</span>&gt; <span class="keyword">where</span> <span class="type">T</span> : <span class="type">Collection</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>LazyFilterCollection</strong></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">LazyFilterCollection</span>&lt;<span class="type">T</span>&gt; <span class="operator">=</span> <span class="type">LazyFilterSequence</span>&lt;<span class="type">T</span>&gt; <span class="keyword">where</span> <span class="type">T</span> : <span class="type">Collection</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>LazyPrefixWhileCollection</strong></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">LazyPrefixWhileCollection</span>&lt;<span class="type">T</span>&gt; <span class="operator">=</span> <span class="type">LazyPrefixWhileSequence</span>&lt;<span class="type">T</span>&gt; <span class="keyword">where</span> <span class="type">T</span> : <span class="type">Collection</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Array 有一个lazy属性返回类型为LazySequence&lt;Array&lt;Element&gt;&gt;</span></span><br><span class="line"><span class="keyword">let</span> arr <span class="operator">=</span> [<span class="number">1</span>, <span class="number">2</span> ,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ls <span class="operator">=</span> arr.lazy</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(of: ls)</span><br><span class="line"><span class="comment">// LazySequence&lt;Array&lt;Int&gt;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> doubled <span class="operator">=</span> ls.map &#123; <span class="variable">$0</span><span class="operator">*</span> <span class="number">2</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(of: doubled))</span><br><span class="line"><span class="comment">// LazyMapSequence&lt;Array&lt;Int&gt;, Int&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> greaterThanOne <span class="operator">=</span> ls.filter &#123; <span class="variable">$0</span> <span class="operator">&gt;</span> <span class="number">1</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(of: greaterThanOne))</span><br><span class="line"><span class="comment">// LazyFilterSequence&lt;Array&lt;Int&gt;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> lessThanTwo <span class="operator">=</span> ls.lazy.drop &#123; <span class="variable">$0</span> <span class="operator">&lt;</span> <span class="number">2</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(of: lessThanTwo))</span><br><span class="line"><span class="comment">// LazyDropWhileSequence&lt;Array&lt;Int&gt;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> lessonThanThree <span class="operator">=</span> ls.lazy.prefix &#123; <span class="variable">$0</span> <span class="operator">&lt;</span> <span class="number">3</span> &#125;</span><br><span class="line"><span class="comment">// LazyPrefixWhileSequence&lt;Array&lt;Int&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><a href="https://docs.swift.org/swift-book/LanguageGuide/Properties.html">https://docs.swift.org/swift-book/LanguageGuide/Properties.html</a></p>
+</li>
+<li><p><a href="https://developer.apple.com/documentation/swift/lazysequenceprotocol">https://developer.apple.com/documentation/swift/lazysequenceprotocol</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Swift</category>
+      </categories>
+      <tags>
+        <tag>懒加载</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑或运算符(||)与空值合并运算符(??)的对比</title>
+    <url>/2025/01/07/logical-or-vs-nullish-coalescing.html</url>
+    <content><![CDATA[<div class="note blue icon-padding simple"><i class="note-icon fas fa-bullhorn"></i><h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2></div>
+
+<ul>
+<li><code>||</code>（逻辑或运算符）：用于设置默认值，在遇到<code>falsy</code>值(<code>false</code>、<code>0</code>、<code>&#39;&#39;</code>、<code>null</code>、<code>undefined</code>和<code>NaN</code>)时返回默认值。</li>
+<li><code>??</code>（空值合并运算符）：用于设置默认值，在遇到<code>null</code>或<code>undefined</code>时返回默认值。</li>
+</ul>
+<hr>
+<p>在 JavaScript 中，<code>||</code>（逻辑或运算符）和 <code>??</code>（空值合并运算符）都是用于设置默认值的运算符，但它们的行为却有所不同。这篇文章将对这两个运算符进行比较，帮助你理解何时使用它们。</p>
+<h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><h3 id="逻辑或运算符"><a href="#逻辑或运算符" class="headerlink" title="逻辑或运算符 (||)"></a>逻辑或运算符 (||)</h3><p>逻辑或运算符返回第一个真值（truthy）或最后一个值。它会将所有<code>falsy</code>值（如<code>false</code>、<code>0</code>、<code>&#39;&#39;</code>、<code>null</code>、<code>undefined</code>和<code>NaN</code>）视为需要替换的情况。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> value = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">let</span> defaultValue = <span class="string">&quot;默认值&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = value || defaultValue; <span class="comment">// 结果为 &#x27;默认值&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="空值合并运算符"><a href="#空值合并运算符" class="headerlink" title="空值合并运算符 (??)"></a>空值合并运算符 (??)</h3><p>空值合并运算符仅在操作数为<code>null</code>或<code>undefined</code>时返回右侧的值。它不会将其他<code>falsy</code>值视为需要替换的情况。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> value = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> defaultValue = <span class="string">&quot;默认值&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = value ?? defaultValue; <span class="comment">// 结果为 0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-具体示例"><a href="#2-具体示例" class="headerlink" title="2. 具体示例"></a>2. 具体示例</h2><p>让我们通过具体示例来比较这两个运算符的行为：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> value1 = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">let</span> value2 = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> value3 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> value4 = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> defaultValue = <span class="string">&quot;默认值&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value1 || defaultValue); <span class="comment">// 输出: &#x27;默认值&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value2 || defaultValue); <span class="comment">// 输出: &#x27;默认值&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value3 || defaultValue); <span class="comment">// 输出: &#x27;默认值&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value4 || defaultValue); <span class="comment">// 输出: &#x27;默认值&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value1 ?? defaultValue); <span class="comment">// 输出: &#x27;默认值&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value2 ?? defaultValue); <span class="comment">// 输出: &#x27;默认值&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value3 ?? defaultValue); <span class="comment">// 输出: 0</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(value4 ?? defaultValue); <span class="comment">// 输出: &#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>从上面的例子可以看到，<code>||</code>运算符会在遇到<code>0</code>或<code>&#39;&#39;</code>时返回默认值，而<code>??</code>运算符则会保留这些值。</p>
+<h2 id="3-何时使用"><a href="#3-何时使用" class="headerlink" title="3. 何时使用"></a>3. 何时使用</h2><ul>
+<li><p>**使用<code>||</code>**：</p>
+<p>当你希望在所有<code>falsy</code>值（包括<code>0</code>、<code>&#39;&#39;</code>等）被视为需要替换的情况。</p>
+</li>
+<li><p>**使用 <code>??</code>**：</p>
+<p>当你只想在值为<code>null</code>或<code>undefined</code>的情况下提供默认值，并希望保留其他<code>falsy</code>值。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>运算符</tag>
+        <tag>JavaScript</tag>
+        <tag>编程技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Swift 中数组如何交换元素的位置</title>
+    <url>/2020/06/28/swap-array-elements-in-swift.html</url>
+    <content><![CDATA[<p>数组如何交换元素的位置，是数组操作中较为常用，下面我们看一下 Swift 中有哪些方法。</p>
+<span id="more"></span>
+
+<p>第一种方法</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr <span class="operator">=</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">let</span> t <span class="operator">=</span> arr[<span class="number">0</span>]</span><br><span class="line">arr[<span class="number">0</span>] <span class="operator">=</span> arr[<span class="number">4</span>]</span><br><span class="line">arr[<span class="number">4</span>] <span class="operator">=</span> t</span><br><span class="line"><span class="built_in">print</span>(arr) <span class="comment">// [5, 2, 3, 4, 1, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>第二种方法</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr <span class="operator">=</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">arr[<span class="number">0</span>] <span class="operator">=</span> arr[<span class="number">0</span>] <span class="operator">+</span> arr[<span class="number">4</span>]</span><br><span class="line">arr[<span class="number">4</span>] <span class="operator">=</span> arr[<span class="number">0</span>] <span class="operator">-</span> arr[<span class="number">4</span>]</span><br><span class="line">arr[<span class="number">0</span>] <span class="operator">=</span> arr[<span class="number">0</span>] <span class="operator">-</span> arr[<span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(arr) <span class="comment">// [5, 2, 3, 4, 1, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>第三种方法</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr <span class="operator">=</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">arr[<span class="number">0</span>] <span class="operator">=</span> arr[<span class="number">0</span>] <span class="operator">^</span> arr[<span class="number">4</span>]</span><br><span class="line">arr[<span class="number">4</span>] <span class="operator">=</span> arr[<span class="number">0</span>] <span class="operator">^</span> arr[<span class="number">4</span>]</span><br><span class="line">arr[<span class="number">0</span>] <span class="operator">=</span> arr[<span class="number">0</span>] <span class="operator">^</span> arr[<span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(arr) <span class="comment">// [5, 2, 3, 4, 1, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>第四种方法</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr <span class="operator">=</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">(arr[<span class="number">0</span>],arr[<span class="number">4</span>]) <span class="operator">=</span> (arr[<span class="number">4</span>],arr[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(arr) <span class="comment">// [5, 2, 3, 4, 1, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>第五种方法</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr <span class="operator">=</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">arr.swapAt(<span class="number">0</span>, <span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(arr) <span class="comment">// [5, 2, 3, 4, 1, 6]</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Development</category>
+        <category>Swift</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何将文本转成语音</title>
+    <url>/2021/03/26/text-to-speech-in-macos.html</url>
+    <content><![CDATA[<p><code>say</code> 命令可以将文件转换成语音。命令示例 <code>say -o hi.wav --data-format=alaw 北京欢迎您</code>。下面例子是将 text.txt 文件中的文字，逐行转换为语音，保存到 voice 目录中。</p>
+<span id="more"></span>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">text=text.txt</span><br><span class="line">voice_folder=voice</span><br><span class="line"></span><br><span class="line">[ ! -f <span class="variable">$text</span> ] &amp;&amp; &#123; <span class="built_in">echo</span> <span class="string">&quot;file <span class="variable">$text</span> does not exist&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"></span><br><span class="line">[ ! -d <span class="variable">$voice_folder</span> ] &amp;&amp; &#123; <span class="built_in">echo</span> <span class="string">&quot;folder <span class="variable">$voice_folder</span> does not exist&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> i</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    say -o <span class="variable">$&#123;voice_folder&#125;</span>/<span class="variable">$&#123;i&#125;</span>.wav --data-format=alaw <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span> &lt; <span class="variable">$text</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>shell</category>
+      </categories>
+      <tags>
+        <tag>Tips</tag>
+        <tag>文本转语音</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Swift 的 @convention 是什么</title>
+    <url>/2019/03/03/what-is-convention-in-swift.html</url>
+    <content><![CDATA[<p><code>@convention</code> 在 Swift2.0 中引入，用于修饰函数类型，它指出了函数调用的约定。</p>
+<ul>
+<li><code>@convention(swift)</code><br>表明是 swift 的闭包</li>
+<li><code>@convention(block)</code><br>匹配 Objective-C 方法参数中的 block 参数</li>
+<li><code>@convention(c)</code><br>匹配 C 函数参数中的函数指针</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="convention-c"><a href="#convention-c" class="headerlink" title="@convention(c)"></a>@convention(c)</h2><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Objc</span></span><br><span class="line"><span class="comment">/// 定义了一个C函数，callback是一个函数指针</span></span><br><span class="line"><span class="built_in">CGFloat</span> myCFunction(<span class="built_in">CGFloat</span> (callback)(<span class="built_in">CGFloat</span> x, <span class="built_in">CGFloat</span> y)) &#123;</span><br><span class="line">    <span class="keyword">return</span> callback(<span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Swift</span></span><br><span class="line"><span class="comment">/// 第一种调用 myCFunction</span></span><br><span class="line"><span class="keyword">let</span> callback: <span class="keyword">@convention(c)</span> (<span class="type">CGFloat</span>, <span class="type">CGFloat</span>) -&gt; <span class="type">CGFloat</span> <span class="operator">=</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$0</span> <span class="operator">+</span> <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> value <span class="operator">=</span> myCFunction(callback)</span><br><span class="line"><span class="built_in">print</span>(value)</span><br><span class="line"><span class="comment">/// 直接实现</span></span><br><span class="line"><span class="keyword">let</span> value1 <span class="operator">=</span> myCFunction &#123; <span class="variable">$0</span> <span class="operator">+</span> <span class="variable">$1</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(value)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Swift</category>
+      </categories>
+      <tags>
+        <tag>@convention</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Flutter 中发送 SMS 的方法</title>
+    <url>/2025/01/07/send-sms-in-flutter.html</url>
+    <content><![CDATA[<p>在现代移动应用中，发送 SMS（短消息服务）是一个常见的功能，尤其是在用户验证或通知方面。本文将介绍如何在 Flutter 应用中实现发送 SMS 的功能。</p>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><p>在开始之前，请确保你已经设置了 Flutter 环境，并创建了一个新的 Flutter 项目。</p>
+<h2 id="2-添加依赖"><a href="#2-添加依赖" class="headerlink" title="2. 添加依赖"></a>2. 添加依赖</h2><p>要在 Flutter 中发送 SMS，我们可以使用 <code>sms</code> 插件或者 <code>url_launcher</code> 插件。这里我们将使用 <code>url_launcher</code> 插件，因为它提供了更广泛的功能。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">flutter pub add url_launcher</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>pubspec.yaml</code> 文件中添加以下依赖：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">flutter:</span></span><br><span class="line">    <span class="attr">sdk:</span> <span class="string">flutter</span></span><br><span class="line">  <span class="attr">url_launcher:</span> <span class="string">^6.3.1</span></span><br></pre></td></tr></table></figure>
+
+<p>然后运行命令来安装依赖：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">flutter pub get</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-实现发送-SMS-的功能"><a href="#3-实现发送-SMS-的功能" class="headerlink" title="3. 实现发送 SMS 的功能"></a>3. 实现发送 SMS 的功能</h2><p>接下来，我们将在 Flutter 应用中实现发送 SMS 的功能。以下是一个简单的示例：</p>
+<h3 id="3-1-导入必要的库"><a href="#3-1-导入必要的库" class="headerlink" title="3.1 导入必要的库"></a>3.1 导入必要的库</h3><p>在你的 Dart 文件中，导入 <code>url_launcher</code> 库：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:url_launcher/url_launcher.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-创建发送-SMS-的函数"><a href="#3-2-创建发送-SMS-的函数" class="headerlink" title="3.2 创建发送 SMS 的函数"></a>3.2 创建发送 SMS 的函数</h3><p>创建一个发送 SMS 的函数，使用 <code>url_launcher</code> 来打开默认的短信应用程序：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Future&lt;<span class="keyword">void</span>&gt; sendSMS(<span class="built_in">String</span> message, <span class="built_in">String</span> phone) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="built_in">String</span> smsUrl = <span class="string">&#x27;sms:<span class="subst">$phone</span>?body=<span class="subst">$&#123;Uri.encodeComponent(message)&#125;</span>&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">await</span> canLaunchUrlString(smsUrl)) &#123;</span><br><span class="line">    <span class="keyword">await</span> launchUrlString(smsUrl);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&#x27;无法发送 SMS 到 <span class="subst">$phone</span>&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-构建-UI"><a href="#3-3-构建-UI" class="headerlink" title="3.3 构建 UI"></a>3.3 构建 UI</h3><p>在你的 Flutter 应用中，创建一个简单的 UI，用户可以输入电话号码和消息：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmsSenderApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> TextEditingController phoneController = TextEditingController();</span><br><span class="line">  <span class="keyword">final</span> TextEditingController messageController = TextEditingController();</span><br><span class="line"></span><br><span class="line">  SmsSenderApp(&#123;<span class="keyword">super</span>.key&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: <span class="keyword">const</span> Text(<span class="string">&#x27;发送 SMS&#x27;</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: Padding(</span><br><span class="line">          padding: <span class="keyword">const</span> EdgeInsets.all(<span class="number">16.0</span>),</span><br><span class="line">          child: Column(</span><br><span class="line">            children: [</span><br><span class="line">              TextField(</span><br><span class="line">                controller: phoneController,</span><br><span class="line">                decoration: <span class="keyword">const</span> InputDecoration(labelText: <span class="string">&#x27;电话号码1&#x27;</span>),</span><br><span class="line">                keyboardType: TextInputType.phone,</span><br><span class="line">              ),</span><br><span class="line">              TextField(</span><br><span class="line">                controller: messageController,</span><br><span class="line">                decoration: <span class="keyword">const</span> InputDecoration(labelText: <span class="string">&#x27;消息&#x27;</span>),</span><br><span class="line">                keyboardType: TextInputType.text,</span><br><span class="line">              ),</span><br><span class="line">              <span class="keyword">const</span> SizedBox(height: <span class="number">20</span>),</span><br><span class="line">              ElevatedButton(</span><br><span class="line">                onPressed: () &#123;</span><br><span class="line">                  sendSMS(messageController.text, phoneController.text);</span><br><span class="line">                &#125;,</span><br><span class="line">                child: <span class="keyword">const</span> Text(<span class="string">&#x27;发送 SMS&#x27;</span>),</span><br><span class="line">              ),</span><br><span class="line">            ],</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-运行应用"><a href="#3-4-运行应用" class="headerlink" title="3.4 运行应用"></a>3.4 运行应用</h3><p>在你的 <code>main.dart</code> 文件中，运行 <code>SmsSenderApp</code>：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(SmsSenderApp());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+      <tags>
+        <tag>flutter</tag>
+        <tag>sms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MacOS 中一些有用命令</title>
+    <url>/2020/10/27/useful-commands-in-macos.html</url>
+    <content><![CDATA[<p>记录一些 MacOS 中有用命令。</p>
+<span id="more"></span>
+
+<h2 id="查看-cpu-信息"><a href="#查看-cpu-信息" class="headerlink" title="查看 cpu 信息"></a>查看 cpu 信息</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sysctl -n machdep.cpu.brand_string</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改终端里显示-hostname"><a href="#修改终端里显示-hostname" class="headerlink" title="修改终端里显示 hostname"></a>修改终端里显示 hostname</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> hostname -s &lt;HOST_NAME&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改终端"><a href="#修改终端" class="headerlink" title="修改终端"></a>修改终端</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.dock ResetLaunchPad -bool <span class="literal">true</span></span><br><span class="line">killall Dock</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示日历和年历"><a href="#显示日历和年历" class="headerlink" title="显示日历和年历"></a>显示日历和年历</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 显示当前月的月历</span></span><br><span class="line">cal</span><br><span class="line"><span class="comment"># 显示2018年的年历</span></span><br><span class="line">cal 2018</span><br></pre></td></tr></table></figure>
+
+<h2 id="调整启动台里每行和每列显示的数量"><a href="#调整启动台里每行和每列显示的数量" class="headerlink" title="调整启动台里每行和每列显示的数量"></a>调整启动台里每行和每列显示的数量</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置列数</span></span><br><span class="line">defaults write com.apple.dock springboard-columns -int 6;</span><br><span class="line"><span class="comment"># 设置行数</span></span><br><span class="line">defaults write com.apple.dock springboard-rows -int 5;</span><br><span class="line">defaults write com.apple.dock ResetLaunchPad -bool TRUE;</span><br><span class="line">killall Dock;</span><br></pre></td></tr></table></figure>
+
+<h2 id="去除-Dock-动画"><a href="#去除-Dock-动画" class="headerlink" title="去除 Dock 动画"></a>去除 Dock 动画</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设为0秒</span></span><br><span class="line">defaults write com.apple.dock autohide-time-modifier -<span class="built_in">float</span> 0; killall Dock</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改截图路径"><a href="#修改截图路径" class="headerlink" title="修改截图路径"></a>修改截图路径</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture location &lt;截图位置&gt;</span><br><span class="line">killall SystemUIServer</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改截图格式"><a href="#修改截图格式" class="headerlink" title="修改截图格式"></a>修改截图格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改为jpg</span></span><br><span class="line">defaults write/read com.apple.screencapture <span class="built_in">type</span> jpg;</span><br><span class="line">killall SystemUIServer</span><br></pre></td></tr></table></figure>
+
+<h2 id="防止-macOS-进入休眠状态"><a href="#防止-macOS-进入休眠状态" class="headerlink" title="防止 macOS 进入休眠状态"></a>防止 macOS 进入休眠状态</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#  1000 自定义的秒数</span></span><br><span class="line">caffeinate -u -t 1000</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示访达文件路径"><a href="#显示访达文件路径" class="headerlink" title="显示访达文件路径"></a>显示访达文件路径</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># YES 让访达上方显示所在文件的路径</span></span><br><span class="line">defaults write/read com.apple.finder _FXShowPosixPathInTitle -bool YES;</span><br><span class="line">killall Finder</span><br></pre></td></tr></table></figure>
+
+<h2 id="Dock-栏添加空气墙"><a href="#Dock-栏添加空气墙" class="headerlink" title="Dock 栏添加空气墙"></a>Dock 栏添加空气墙</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在不同的App之前建立空气墙来区分，</span></span><br><span class="line"><span class="comment"># 删除只要把空白的地方拖到桌面就可以了</span></span><br><span class="line">defaults write com.apple.dock persistent-apps -array-add <span class="string">&#x27;&#123;tile-data=&#123;&#125;; tile-type=&quot;spacer-tile&quot;;&#125;&#x27;</span>;</span><br><span class="line">Killall Dock</span><br></pre></td></tr></table></figure>
+
+<h2 id="Finder-显隐隐藏文件"><a href="#Finder-显隐隐藏文件" class="headerlink" title="Finder 显隐隐藏文件"></a>Finder 显隐隐藏文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 显示隐藏文件</span></span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles TRUE</span><br><span class="line">killall Finder</span><br><span class="line"><span class="comment"># 恢复隐藏文件</span></span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span></span><br><span class="line">killall Finder</span><br></pre></td></tr></table></figure>
+
+<h2 id="截屏窗口阴影"><a href="#截屏窗口阴影" class="headerlink" title="截屏窗口阴影"></a>截屏窗口阴影</h2><p><code>cmd + shift + 4，空格</code> 截图的窗口会有阴影</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 去掉窗口阴影</span></span><br><span class="line">defaults write com.apple.screencapture disable-shadow -bool <span class="literal">true</span></span><br><span class="line">killall SystemUIServer</span><br><span class="line"><span class="comment"># 恢复窗口阴影</span></span><br><span class="line">defaults write com.apple.screencapture disable-shadow -bool <span class="literal">false</span></span><br><span class="line">killall SystemUIServer</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>shell</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>命令行</tag>
+      </tags>
+  </entry>
+</search>
